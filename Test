@@ -1,54 +1,86 @@
 import java.util.Scanner;
 
-public class ArraySearch {
+public class AreaCalculator {
 
     public static void main(String[] args) {
 
-        Scanner input = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the size of the array: ");
+        System.out.println("Enter shape (triangle, rectangle, or circle):");
 
-        int size = input.nextInt();
+        String shape = scanner.nextLine();
 
-        int[] arr = new int[size];
+        
 
-        System.out.print("Enter the elements of the array: ");
+        if (shape.equalsIgnoreCase("triangle")) {
 
-        for (int i = 0; i < size; i++) {
+            System.out.println("Enter base and height:");
 
-            arr[i] = input.nextInt();
+            double base = scanner.nextDouble();
 
-        }
+            double height = scanner.nextDouble();
 
-        System.out.print("Enter the element to search for: ");
+            double area = area(base, height);
 
-        int search = input.nextInt();
+            System.out.println("The area of the triangle is " + area);
 
-        boolean found = false;
+        } else if (shape.equalsIgnoreCase("rectangle")) {
 
-        for (int i = 0; i < size; i++) {
+            System.out.println("Enter length and width:");
 
-            if (arr[i] == search) {
+            double length = scanner.nextDouble();
 
-                System.out.println("Element found at index " + i);
+            double width = scanner.nextDouble();
 
-                found = true;
+            double area = area(length, width);
 
-                break;
+            System.out.println("The area of the rectangle is " + area);
 
-            }
+        } else if (shape.equalsIgnoreCase("circle")) {
 
-        }
+            System.out.println("Enter radius:");
 
-        if (!found) {
+            double radius = scanner.nextDouble();
 
-            System.out.println("Element not found in the array");
+            double area = area(radius);
+
+            System.out.println("The area of the circle is " + area);
+
+        } else {
+
+            System.out.println("Invalid shape.");
 
         }
 
     }
 
+    
+
+    public static double area(double base, double height) {
+
+        return 0.5 * base * height;
+
+    }
+
+    
+
+    public static double area(double length, double width) {
+
+        return length * width;
+
+    }
+
+    
+
+    public static double area(double radius) {
+
+        return Math.PI * radius * radius;
+
+    }
+
 }
+
+
 
 
 
