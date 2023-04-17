@@ -1,36 +1,54 @@
 import java.util.Scanner;
 
-public class ArraySearch {
+public class SearchArray {
 
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
 
+        
+
+        // Prompt the user to enter the size of the array
+
         System.out.print("Enter the size of the array: ");
 
         int size = input.nextInt();
 
-        int[] arr = new int[size];
+        
 
-        System.out.print("Enter the elements of the array: ");
+        // Create an array of the specified size
+
+        String[] array = new String[size];
+
+        
+
+        // Prompt the user to enter each element of the array
 
         for (int i = 0; i < size; i++) {
 
-            arr[i] = input.nextInt();
+            System.out.print("Enter element " + (i+1) + ": ");
+
+            array[i] = input.next();
 
         }
 
-        System.out.print("Enter the element to search for: ");
+        
 
-        int search = input.nextInt();
+        // Prompt the user to enter the string to search for
+
+        System.out.print("Enter a string to search for: ");
+
+        String search = input.next();
+
+        
+
+        // Search for the string in the array
 
         boolean found = false;
 
         for (int i = 0; i < size; i++) {
 
-            if (arr[i] == search) {
-
-                System.out.println("Element found at index " + i);
+            if (array[i].equals(search)) {
 
                 found = true;
 
@@ -40,15 +58,29 @@ public class ArraySearch {
 
         }
 
-        if (!found) {
+        
 
-            System.out.println("Element not found in the array");
+        // Output the result of the search
+
+        if (found) {
+
+            System.out.println(search + " was found in the array.");
+
+        } else {
+
+            System.out.println(search + " was not found in the array.");
 
         }
 
     }
 
 }
+
+ 
+
+ 
+
+
 
 
 
