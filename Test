@@ -1,80 +1,120 @@
 import java.util.Scanner;
 
-public class AreaCalculator {
+class Employee {
+
+    int empid;
+
+    String name, address;
+
+    double salary;
+
+    Employee(int id, String n, String addr, double sal) {
+
+        empid = id;
+
+        name = n;
+
+        address = addr;
+
+        salary = sal;
+
+    }
+
+}
+
+class Teacher extends Employee {
+
+    String department, subject;
+
+    Teacher(int id, String n, String addr, double sal, String dept, String sub) {
+
+        super(id, n, addr, sal);
+
+        department = dept;
+
+        subject = sub;
+
+    }
+
+    void display() {
+
+        System.out.println("Employee ID: " + empid);
+
+        System.out.println("Name: " + name);
+
+        System.out.println("Address: " + address);
+
+        System.out.println("Salary: " + salary);
+
+        System.out.println("Department: " + department);
+
+        System.out.println("Subject: " + subject);
+
+        System.out.println();
+
+    }
+
+}
+
+public class Main {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter shape (triangle, rectangle, or circle):");
+        System.out.print("Enter the number of teachers: ");
 
-        String shape = scanner.nextLine();
+        int n = sc.nextInt();
 
-        
+        Teacher[] teachers = new Teacher[n];
 
-        if (shape.equalsIgnoreCase("triangle")) {
+        for (int i = 0; i < n; i++) {
 
-            System.out.println("Enter base and height:");
+            System.out.println("Enter details of Teacher " + (i+1) + ":");
 
-            double base = scanner.nextDouble();
+            System.out.print("Employee ID: ");
 
-            double height = scanner.nextDouble();
+            int id = sc.nextInt();
 
-            double area = areaTriangle(base, height);
+            sc.nextLine();
 
-            System.out.println("The area of the triangle is " + area);
+            System.out.print("Name: ");
 
-        } else if (shape.equalsIgnoreCase("rectangle")) {
+            String name = sc.nextLine();
 
-            System.out.println("Enter length and width:");
+            System.out.print("Address: ");
 
-            double length = scanner.nextDouble();
+            String addr = sc.nextLine();
 
-            double width = scanner.nextDouble();
+            System.out.print("Salary: ");
 
-            double area = areaRectangle(length, width);
+            double sal = sc.nextDouble();
 
-            System.out.println("The area of the rectangle is " + area);
+            sc.nextLine();
 
-        } else if (shape.equalsIgnoreCase("circle")) {
+            System.out.print("Department: ");
 
-            System.out.println("Enter radius:");
+            String dept = sc.nextLine();
 
-            double radius = scanner.nextDouble();
+            System.out.print("Subject: ");
 
-            double area = areaCircle(radius);
+            String sub = sc.nextLine();
 
-            System.out.println("The area of the circle is " + area);
+            teachers[i] = new Teacher(id, name, addr, sal, dept, sub);
 
-        } else {
-
-            System.out.println("Invalid shape.");
+            System.out.println();
 
         }
 
-    }
+        System.out.println("Details of all teachers:");
 
-    
+        for (int i = 0; i < n; i++) {
 
-    public static double areaTriangle(double base, double height) {
+            teachers[i].display();
 
-        return 0.5 * base * height;
+        }
 
-    }
-
-    
-
-    public static double areaRectangle(double length, double width) {
-
-        return length * width;
-
-    }
-
-    
-
-    public static double areaCircle(double radius) {
-
-        return Math.PI * radius * radius;
+        sc.close();
 
     }
 
@@ -82,6 +122,9 @@ public class AreaCalculator {
 
 
 
+    
+
+    
 
 
 
