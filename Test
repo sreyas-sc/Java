@@ -20,7 +20,7 @@ public class AreaCalculator {
 
             double height = scanner.nextDouble();
 
-            double area = area(base, height);
+            double area = areaTriangle(base, height);
 
             System.out.println("The area of the triangle is " + area);
 
@@ -32,7 +32,7 @@ public class AreaCalculator {
 
             double width = scanner.nextDouble();
 
-            double area = area(length, width);
+            double area = areaRectangle(length, width);
 
             System.out.println("The area of the rectangle is " + area);
 
@@ -42,7 +42,7 @@ public class AreaCalculator {
 
             double radius = scanner.nextDouble();
 
-            double area = area(radius);
+            double area = areaCircle(radius);
 
             System.out.println("The area of the circle is " + area);
 
@@ -56,7 +56,7 @@ public class AreaCalculator {
 
     
 
-    public static double area(double base, double height) {
+    public static double areaTriangle(double base, double height) {
 
         return 0.5 * base * height;
 
@@ -64,7 +64,7 @@ public class AreaCalculator {
 
     
 
-    public static double area(double length, double width) {
+    public static double areaRectangle(double length, double width) {
 
         return length * width;
 
@@ -72,22 +72,13 @@ public class AreaCalculator {
 
     
 
-    public static double area(double radius) {
+    public static double areaCircle(double radius) {
 
         return Math.PI * radius * radius;
 
     }
 
 }
-
-
-
-
-
- 
-
-
-
 
 
 
