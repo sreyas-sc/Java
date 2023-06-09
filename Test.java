@@ -1,103 +1,32 @@
-import java.util.Scanner;
+-- Create the Product table
+CREATE TABLE Product (
+  PdtId INT PRIMARY KEY,
+  Pname VARCHAR(50),
+  Price DECIMAL(10, 2),
+  QtyInStock INT
+);
 
-// Interface with prototypes of area() and perimeter() functions
-interface Shape {
-    double area();
-    double perimeter();
-}
+-- Create the Sale table
+CREATE TABLE Sale (
+  SaleId INT PRIMARY KEY,
+  DeliveryAddress VARCHAR(100)
+);
 
-// Circle class implementing the Shape interface
-class Circle implements Shape {
-    private double radius;
+-- Create the Saleitem table
+CREATE TABLE Saleitem (
+  SaleId INT,
+  PdtId INT,
+  Qty INT,
+  FOREIGN KEY (SaleId) REFERENCES Sale(SaleId),
+  FOREIGN KEY (PdtId) REFERENCES Product(PdtId)
+);
 
-    public Circle(double radius) {
-        this.radius = radius;
-    }
-
-    @Override
-    public double area() {
-        return Math.PI * radius * radius;
-    }
-
-    @Override
-    public double perimeter() {
-        return 2 * Math.PI * radius;
-    }
-}
-
-// Rectangle class implementing the Shape interface
-class Rectangle implements Shape {
-    private double length;
-    private double width;
-
-    public Rectangle(double length, double width) {
-        this.length = length;
-        this.width = width;
-    }
-
-    @Override
-    public double area() {
-        return length * width;
-    }
-
-    @Override
-    public double perimeter() {
-        return 2 * (length + width);
-    }
-}
-
-// Menu-driven program to find area and perimeter
-public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        int choice;
-        do {
-            System.out.println("Menu:");
-            System.out.println("1. Calculate area and perimeter of a circle");
-            System.out.println("2. Calculate area and perimeter of a rectangle");
-            System.out.println("3. Exit");
-            System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
-
-            switch (choice) {
-                case 1:
-                    System.out.print("Enter the radius of the circle: ");
-                    double radius = scanner.nextDouble();
-                    Circle circle = new Circle(radius);
-                    System.out.println("Area: " + circle.area());
-                    System.out.println("Perimeter: " + circle.perimeter());
-                    break;
-                case 2:
-                    System.out.print("Enter the length of the rectangle: ");
-                    double length = scanner.nextDouble();
-                    System.out.print("Enter the width of the rectangle: ");
-                    double width = scanner.nextDouble();
-                    Rectangle rectangle = new Rectangle(length, width);
-                    System.out.println("Area: " + rectangle.area());
-                    System.out.println("Perimeter: " + rectangle.perimeter());
-                    break;
-                case 3:
-                    System.out.println("Exiting the program...");
-                    break;
-                default:
-                    System.out.println("Invalid choice! Please try again.");
-            }
-        } while (choice != 3);
-
-        scanner.close();
-    }
-}
-
-
-    
-
-    
-
-
-
-
-      
-   
-
-
+-- Create the updateAvailableQuantity trigger
+CREATE TRIGGER updateAvailableQuantity
+AFTER INSERT ON Saleitem
+FOR EACH ROW
+BEGIN
+  UPDATE Product
+  SET QtyInStock = QtyInStock - NEW.Qty
+  WHERE PdtId = NEW.PdtId;
+END;
