@@ -1,4 +1,6 @@
-public class AuthenticationException extends Exception {
+import java.util.Scanner;
+
+class AuthenticationException extends Exception {
     public AuthenticationException(String message) {
         super(message);
     }
@@ -6,19 +8,23 @@ public class AuthenticationException extends Exception {
 
 public class AuthenticationExample {
     public static void main(String[] args) {
-        String username = "admin";
-        String password = "password123";
-
         try {
-            authenticate(username, password);
+            authenticateUser();
             System.out.println("Authentication successful!");
         } catch (AuthenticationException e) {
             System.out.println("Authentication failed: " + e.getMessage());
         }
     }
 
-    public static void authenticate(String username, String password) throws AuthenticationException {
-        
+    public static void authenticateUser() throws AuthenticationException {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+
         if (!username.equals("admin") || !password.equals("password123")) {
             throw new AuthenticationException("Invalid username or password");
         }
