@@ -1,22 +1,23 @@
+pip install matplotlib pandas
+
 import matplotlib.pyplot as plt
+import pandas as pd
 
-# Sample Data
-math_marks = [88, 92, 80, 89, 100, 80, 60, 100, 80, 34]
-science_marks = [35, 79, 79, 48, 100, 88, 32, 45, 20, 30]
-marks_range = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+# Read the data from the CSV file
+data = pd.read_csv('medal.csv')
 
-# Create a scatter plot
-plt.scatter(math_marks, science_marks, c=marks_range, cmap='viridis', marker='o')
+# Sort the data by gold medals in descending order
+data = data.sort_values(by='gold_medal', ascending=False)
 
-# Add labels and title
-plt.xlabel('Math Marks')
-plt.ylabel('Science Marks')
-plt.title('Scatter Plot of Math vs. Science Marks')
+# Select the top 5 countries
+top_countries = data.head(5)
 
-# Add a colorbar to indicate the marks range
-cbar = plt.colorbar()
-cbar.set_label('Marks Range')
+# Create a pie chart
+plt.figure(figsize=(8, 8))
+plt.pie(top_countries['gold_medal'], labels=top_countries['country'], autopct='%1.1f%%', startangle=140)
 
-# Show the plot
+# Add a title
+plt.title('Gold Medal Achievements (Top 5 Countries) - 2016 Summer Olympics')
+
+# Display the pie chart
 plt.show()
-
