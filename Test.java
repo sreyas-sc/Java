@@ -1,32 +1,48 @@
-import java.util.Scanner;
+You can create bar charts using the popular Python library, Matplotlib. Here's how you can accomplish each of your tasks:
 
-class AuthenticationException extends Exception {
-    public AuthenticationException(String message) {
-        super(message);
-    }
-}
+(i) Display a bar chart of the popularity of programming languages:
+```python
+import matplotlib.pyplot as plt
 
-public class AuthenticationExample {
-    public static void main(String[] args) {
-        try {
-            authenticateUser();
-            System.out.println("Authentication successful!");
-        } catch (AuthenticationException e) {
-            System.out.println("Authentication failed: " + e.getMessage());
-        }
-    }
+languages = ["Java", "Python", "PHP", "JavaScript", "C#", "C++"]
+popularity = [22.2, 17.6, 8.8, 8, 77, 6.7]
 
-    public static void authenticateUser() throws AuthenticationException {
-        Scanner scanner = new Scanner(System.in);
+plt.bar(languages, popularity)
+plt.xlabel("Programming Languages")
+plt.ylabel("Popularity")
+plt.title("Popularity of Programming Languages")
+plt.show()
+```
 
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
+(ii) Display a horizontal bar chart of the popularity of programming languages with red bars:
+```python
+import matplotlib.pyplot as plt
 
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
+languages = ["Java", "Python", "PHP", "JavaScript", "C#", "C++"]
+popularity = [22.2, 17.6, 8.8, 8, 77, 6.7]
 
-        if (!username.equals("admin") || !password.equals("password123")) {
-            throw new AuthenticationException("Invalid username or password");
-        }
-    }
-}
+plt.barh(languages, popularity, color='red')
+plt.xlabel("Popularity")
+plt.ylabel("Programming Languages")
+plt.title("Popularity of Programming Languages (Red Bars)")
+plt.show()
+```
+
+(iii) Display a bar chart of the popularity of programming languages with different colors for each bar:
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+languages = ["Java", "Python", "PHP", "JavaScript", "C#", "C++"]
+popularity = [22.2, 17.6, 8.8, 8, 77, 6.7]
+
+colors = ['blue', 'green', 'orange', 'purple', 'red', 'pink']
+
+plt.bar(languages, popularity, color=colors)
+plt.xlabel("Programming Languages")
+plt.ylabel("Popularity")
+plt.title("Popularity of Programming Languages (Different Colors)")
+plt.show()
+```
+
+These code snippets will create the desired bar charts using Matplotlib in Python. You can customize them further as needed.
