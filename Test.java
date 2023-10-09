@@ -1,29 +1,15 @@
-
 import matplotlib.pyplot as plt
-import numpy as np
 
-# Sample Data
-groups = ['Group 1', 'Group 2', 'Group 3', 'Group 4', 'Group 5']
-means_men = [22, 30, 35, 35, 26]
-means_women = [25, 32, 30, 35, 29]
+# Programming languages and their popularity
+languages = ['Java', 'Python', 'PHP', 'JavaScript', 'C#', 'C++']
+popularity = [22.2, 17.6, 8.8, 8, 7.7, 6.7]
 
-# Create an array of X positions for the groups
-x = np.arange(len(groups))
+# Create a pie chart
+plt.figure(figsize=(8, 8))
+plt.pie(popularity, labels=languages, autopct='%1.1f%%', startangle=140)
 
-# Set the width of the bars
-bar_width = 0.35
+# Add a title
+plt.title('Popularity of Programming Languages')
 
-# Create the bar plots for men and women
-plt.bar(x - bar_width/2, means_men, bar_width, label='Men')
-plt.bar(x + bar_width/2, means_women, bar_width, label='Women')
-
-# Add labels, title, and legend
-plt.xlabel('Groups')
-plt.ylabel('Scores')
-plt.title('Scores by Group and Gender')
-plt.xticks(x, groups)
-plt.legend()
-
-# Show the plot
+# Display the pie chart
 plt.show()
-
