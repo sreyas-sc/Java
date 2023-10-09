@@ -1,48 +1,29 @@
-You can create bar charts using the popular Python library, Matplotlib. Here's how you can accomplish each of your tasks:
 
-(i) Display a bar chart of the popularity of programming languages:
-```python
-import matplotlib.pyplot as plt
-
-languages = ["Java", "Python", "PHP", "JavaScript", "C#", "C++"]
-popularity = [22.2, 17.6, 8.8, 8, 77, 6.7]
-
-plt.bar(languages, popularity)
-plt.xlabel("Programming Languages")
-plt.ylabel("Popularity")
-plt.title("Popularity of Programming Languages")
-plt.show()
-```
-
-(ii) Display a horizontal bar chart of the popularity of programming languages with red bars:
-```python
-import matplotlib.pyplot as plt
-
-languages = ["Java", "Python", "PHP", "JavaScript", "C#", "C++"]
-popularity = [22.2, 17.6, 8.8, 8, 77, 6.7]
-
-plt.barh(languages, popularity, color='red')
-plt.xlabel("Popularity")
-plt.ylabel("Programming Languages")
-plt.title("Popularity of Programming Languages (Red Bars)")
-plt.show()
-```
-
-(iii) Display a bar chart of the popularity of programming languages with different colors for each bar:
-```python
 import matplotlib.pyplot as plt
 import numpy as np
 
-languages = ["Java", "Python", "PHP", "JavaScript", "C#", "C++"]
-popularity = [22.2, 17.6, 8.8, 8, 77, 6.7]
+# Sample Data
+groups = ['Group 1', 'Group 2', 'Group 3', 'Group 4', 'Group 5']
+means_men = [22, 30, 35, 35, 26]
+means_women = [25, 32, 30, 35, 29]
 
-colors = ['blue', 'green', 'orange', 'purple', 'red', 'pink']
+# Create an array of X positions for the groups
+x = np.arange(len(groups))
 
-plt.bar(languages, popularity, color=colors)
-plt.xlabel("Programming Languages")
-plt.ylabel("Popularity")
-plt.title("Popularity of Programming Languages (Different Colors)")
+# Set the width of the bars
+bar_width = 0.35
+
+# Create the bar plots for men and women
+plt.bar(x - bar_width/2, means_men, bar_width, label='Men')
+plt.bar(x + bar_width/2, means_women, bar_width, label='Women')
+
+# Add labels, title, and legend
+plt.xlabel('Groups')
+plt.ylabel('Scores')
+plt.title('Scores by Group and Gender')
+plt.xticks(x, groups)
+plt.legend()
+
+# Show the plot
 plt.show()
-```
 
-These code snippets will create the desired bar charts using Matplotlib in Python. You can customize them further as needed.
