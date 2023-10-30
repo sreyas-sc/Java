@@ -1,10 +1,15 @@
+
+
 import pandas as pd
 
 data = {
-    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
-    'Age': [30, 25, 22, 30, 28],
-    'City': ['New York', 'Los Angeles', 'Chicago', 'New York', 'Los Angeles']
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 22]
 }
-df = pd.DataFrame(data)
-sorted_df = df.sort_values(by=['Age', 'City'], ascending=[True, True])
-print(sorted_df)
+
+custom_index = ['one', 'two', 'three']
+df = pd.DataFrame(data, index=custom_index)
+
+df_reset = df.reset_index(drop=True)
+
+print(df_reset)
